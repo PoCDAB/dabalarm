@@ -39,16 +39,12 @@ streams
     │   ├── 2.opus
     │   ├── ...
     │   └── n.flac
-    ├── dls
-    │   ├── 1.txt
-    │   ├── 2.txt
+    ├── slides
+    │   ├── 1.jpg
+    │   ├── 2.png
     │   ├── ...
-    │   └── n.txt
-    └── slides
-        ├── 1.jpg
-        ├── 2.png
-        ├── ...
-        └── 3.txt
+    │   └── 3.txt
+    └── dls.txt
 ```
 
 Alle audio-formaten ondersteund door de geïnstalleerde versie van ffmpeg worden ook
@@ -64,8 +60,8 @@ worden ook door deze scripts ondersteund.
 live
 └── [sub-kanaal]
     ├── audio
-    ├── dls
-    └── slides
+    ├── slides
+    └── dls.txt
 ```
 
 Bestanden worden automatisch met symbolic links aan de juiste mappen gelinkt.

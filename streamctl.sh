@@ -59,9 +59,8 @@ if [ ! -p "/tmp/dabch$CH-audio.fifo" ]; then
 		--pad=58 & echo $! > "$AUDIOENC_PID"
 
 	# start encoding DLS and MOT slideshow information and send it to the audio encoder
-	# TODO fix DLS reading only 1 file
 	./ODR-PadEnc/odr-padenc \
-		--dls=live/$CH/dls/1.txt \
+		--dls=live/$CH/dls.txt \
 		--dir=live/$CH/slides \
 		--output=dabch$CH \
 		--sleep=0 & echo $! > "$PADENC_PID"
@@ -74,12 +73,12 @@ fi
 pkill ffmpeg # TODO kill by PID
 
 # delete the old channel stream (if present)
-rm -f live/$CH/audio/* live/$CH/dls/* live/$CH/slides/*
+rm -f live/$CH/audio/* live/$CH/slides/*
 
 # link in the new streams
 ln -sr streams/$STREAM/audio/* live/$CH/audio/.
-ln -sr streams/$STREAM/dls/* live/$CH/dls/.
 ln -sr streams/$STREAM/slides/* live/$CH/slides/.
+cat streams/$STREAM/dls.txt > live/$CH/dls.txt
 
 # play the new stream
 (./play.sh $CH &)
