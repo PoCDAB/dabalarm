@@ -31,6 +31,7 @@ worden gekoppeld.
 ## Streams
 `streams/` heeft de volgende mappenstructuur:
 
+```
 streams
 └── [stream]
     ├── audio
@@ -48,6 +49,7 @@ streams
         ├── 2.png
         ├── ...
         └── 3.txt
+```
 
 Alle audio-formaten ondersteund door de geïnstalleerde versie van ffmpeg worden ook
 door deze scripts ondersteund.
@@ -58,11 +60,13 @@ worden ook door deze scripts ondersteund.
 ## Live
 `live/` heeft de volgende mappenstructuur:
 
+```
 live
 └── [sub-kanaal]
     ├── audio
     ├── dls
     └── slides
+```
 
 Bestanden worden automatisch met symbolic links aan de juiste mappen gelinkt.
 
