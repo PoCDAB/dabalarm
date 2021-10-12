@@ -7,26 +7,45 @@ HackRF One een demo van DAB alarm berichten uit te voeren:
 - ODR-DabMod: DAB signaal modulator (alleen voor HackRF One streaming)
 
 # Uitvoeren
-Eerst zullen alle bovenstaande programma's apart moeten worden gecompileerd. In
-die toekomst zal ik hier wellicht een simpel script voor schrijven.
+Aanvankelijk zullen alle bovenstaande programma's apart moeten worden
+gecompileerd. In die toekomst zal ik hier wellicht een simpel script voor
+schrijven.
 
 Vereisten:
 - ImageMagick
 - ffmpeg
 - nmap-ncat
 - Alle bovenstaande programma's gecompileerd (maar niet per se geïnstalleerd met
-  make install)
+  `make install`)
 
-Configureer in dabmux.cfg de sub-kanalen. Maak en vul daarnaast de mappenstructuur
-besproken in onderstaande sectie.
+Configureer in dabmux.cfg de sub-kanalen. Maak en vul daarnaast de
+mappenstructuur toegelicht in onderstaande sectie.
 
 `./ensemble.sh` start de ensemble
-`./play.sh` kan worden gebruikt om
+`./streamctl.sh` kan worden gebruikt om een stream aan een sub-kanaal te
+koppelen. Om bijvoorbeeld een stream genaamd "radio" te koppelen aan sub-kanaal
+1:
+
+```
+$ ./streamctl.sh 1 start radio
+```
+
+Als er al een stream op het sub-kanaal loopt, wordt deze automatisch gestopt.
+
+Om een sub-kanaal te stoppen, kan het volgende commando worden gebruikt:
+
+```
+$ ./streamctl.sh 1 stop
+```
+
+# Alarm stream
+Het idee van deze demo is dat door een "alarm" stream aan te maken, hier per
+kanaal naar kan worden overgeswitcht zonder gebruikt te maken van DAB-EWF. Dit
+is voordelig voor goedkope draadloze ontvangers die geen DAB-EWF ondersteunen.
 
 # Mappenstructuur
 De `streams/` map bevat alle streams die kunnen worden uitgezonden. `live/`
-bevat alle sub-kanalen. Met `streamctl.sh` kan een stream aan een sub-kanaal
-worden gekoppeld.
+bevat alle sub-kanalen.
 
 ## Streams
 `streams/` heeft de volgende mappenstructuur:
@@ -47,8 +66,8 @@ streams
     └── dls.txt
 ```
 
-Alle audio-formaten ondersteund door de geïnstalleerde versie van ffmpeg worden ook
-door deze scripts ondersteund.
+Alle audio-formaten ondersteund door de geïnstalleerde versie van ffmpeg worden
+ook door deze scripts ondersteund.
 
 Alle slide-formaten ondersteund door de geïnstalleerde versie van ImageMagick
 worden ook door deze scripts ondersteund.
@@ -65,11 +84,3 @@ live
 ```
 
 Bestanden worden automatisch met symbolic links aan de juiste mappen gelinkt.
-
-# Voorbeelden
-
-## Stream (her-)starten
-TODO
-
-## Alarm announcement
-TODO

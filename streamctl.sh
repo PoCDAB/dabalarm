@@ -4,13 +4,6 @@
 # Script to bind a new stream to a channel
 #
 
-# check number of arguments
-if [ "$#" -ne 3 ]; then
-	echo "usage: $0 CHANNEL start|stop [STREAM]"
-	exit 1
-fi
-# TODO use a little getopt magic here instead of this crappy parsing
-
 CH="$1"
 STREAM="$3"
 
@@ -42,6 +35,13 @@ if [ "$2" = "stop" ]; then
 
 	exit 0
 fi
+
+# check number of arguments
+if [ "$#" -ne 3 ]; then
+	echo "usage: $0 CHANNEL start|stop [STREAM]"
+	exit 1
+fi
+# TODO use a little getopt magic here instead of this crappy parsing
 
 # start the audio encoder and DLS/MOT encoder as needed
 if [ ! -p "/tmp/dabch$CH-audio.fifo" ]; then
