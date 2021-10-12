@@ -8,11 +8,68 @@ HackRF One een demo van DAB alarm berichten uit te voeren:
 
 # Uitvoeren
 Eerst zullen alle bovenstaande programma's apart moeten worden gecompileerd. In
-die toekomst zal ik hier een simpel script voor schrijven.
+die toekomst zal ik hier wellicht een simpel script voor schrijven.
 
-`./dablin.sh` start dablin op en in de achtergrond wordt de stream naar het
-programma gepiped.
+Vereisten:
+- ImageMagick
+- ffmpeg
+- nmap-ncat
+- Alle bovenstaande programma's gecompileerd (maar niet per se geïnstalleerd met
+  make install)
 
-Met `./alarm.sh` kan het alarm announcement worden verzonden.
+Configureer in dabmux.cfg de sub-kanalen. Maak en vul daarnaast de mappenstructuur
+besproken in onderstaande sectie.
 
+`./ensemble.sh` start de ensemble
+`./play.sh` kan worden gebruikt om
+
+# Mappenstructuur
+De `streams/` map bevat alle streams die kunnen worden uitgezonden. `live/`
+bevat alle sub-kanalen. Met `streamctl.sh` kan een stream aan een sub-kanaal
+worden gekoppeld.
+
+## Streams
+`streams/` heeft de volgende mappenstructuur:
+
+streams
+└── [stream]
+    ├── audio
+    │   ├── 1.mp3
+    │   ├── 2.opus
+    │   ├── ...
+    │   └── n.flac
+    ├── dls
+    │   ├── 1.txt
+    │   ├── 2.txt
+    │   ├── ...
+    │   └── n.txt
+    └── slides
+        ├── 1.jpg
+        ├── 2.png
+        ├── ...
+        └── 3.txt
+
+Alle audio-formaten ondersteund door de geïnstalleerde versie van ffmpeg worden ook
+door deze scripts ondersteund.
+
+Alle slide-formaten ondersteund door de geïnstalleerde versie van ImageMagick
+worden ook door deze scripts ondersteund.
+
+## Live
+`live/` heeft de volgende mappenstructuur:
+
+live
+└── [sub-kanaal]
+    ├── audio
+    ├── dls
+    └── slides
+
+Bestanden worden automatisch met symbolic links aan de juiste mappen gelinkt.
+
+# Voorbeelden
+
+## Stream (her-)starten
+TODO
+
+## Alarm announcement
 TODO
