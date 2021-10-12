@@ -7,4 +7,12 @@ HackRF One een demo van DAB alarm berichten uit te voeren:
 - ODR-DabMod: DAB signaal modulator (alleen voor HackRF One streaming)
 
 # Uitvoeren
+Eerst zullen alle bovenstaande programma's apart moeten worden gecompileerd. In
+die toekomst zal ik hier een simpel script voor schrijven.
+
+`./dablin.sh` start dablin op en in de achtergrond wordt de stream naar het
+programma gepiped.
+
+Met `./alarm.sh` kan het alarm announcement worden verzonden.
+
 TODO
