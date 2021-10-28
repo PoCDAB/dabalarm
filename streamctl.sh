@@ -1,6 +1,27 @@
 #!/bin/bash
 
 #
+#    CFNS - Rijkswaterstaat CIV, Delft © 2021 - 2022 <cfns@rws.nl>
+#
+#    Copyright 2021 - 2022 Bastiaan Teeuwen <bastiaan@mkcl.nl>
+#
+#    This file is part of dabalarm
+#
+#    dabalarm is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    dabalarm is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with dabalarm.  If not, see <https://www.gnu.org/licenses/>.
+#
+
+#
 # Script to bind a new stream to a channel
 #
 
@@ -33,12 +54,15 @@ if [ "$2" = "stop" ]; then
 
 	rm "$FIFO" "$PLAY_PID" "$AUDIOENC_PID" "$PADENC_PID" "/tmp/dabch$CH.audioenc" "/tmp/dabch$CH.padenc"
 
+	# unbind folder links and remove DLS information
+	rm -f live/$CH/audio/* live/$CH/slides/* live/$CH/dls.txt
+
 	exit 0
 fi
 
 # check number of arguments
 if [ "$#" -ne 3 ]; then
-	echo "usage: $0 CHANNEL start|stop [STREAM]"
+	echo "usage: $0 CHANNEL start|stop [STREAM] [alarm]"
 	exit 1
 fi
 # TODO use a little getopt magic here instead of this crappy parsing
@@ -49,7 +73,7 @@ if [ ! -p "/tmp/dabch$CH-audio.fifo" ]; then
 	mkfifo "$FIFO"
 
 	# start encoding audio
-	./ODR-AudioEnc/odr-audioenc \
+	./bin/odr-audioenc \
 		--input="$FIFO" \
 		--format=raw \
 		--fifo-silence \
@@ -59,7 +83,7 @@ if [ ! -p "/tmp/dabch$CH-audio.fifo" ]; then
 		--pad=58 & echo $! > "$AUDIOENC_PID"
 
 	# start encoding DLS and MOT slideshow information and send it to the audio encoder
-	./ODR-PadEnc/odr-padenc \
+	./bin/odr-padenc \
 		--dls=live/$CH/dls.txt \
 		--dir=live/$CH/slides \
 		--output=dabch$CH \

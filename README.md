@@ -110,7 +110,8 @@ $ ./bootstrap.sh welle-io
 Then setup a named pipe for the I/Q frames to be piped through. Then run
 welle.io and configure it to read from the pipe in the settings:
 ```
-$ mkfifo welle-io.fifo
+$ mkfifo /tmp/welle-io.fifo
+$ ./bin/odr-dabmux dabmux.cfg | ./bin/odr-dabmod -f /tmp/welle-io.fifo -m 1 -F u8
 $ ./bin/welle-io
 ```
 
@@ -176,6 +177,9 @@ don't support DAB-EWF.
 The disadvantage is that DAB-EWF features like automatically powering on the
 receiver from stand-by or switching from a different input method to DAB
 automatically won't work.
+
+# TODO
+- Finish bootstrap.sh
 
 # Example
 TODO

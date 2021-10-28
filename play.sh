@@ -1,6 +1,26 @@
 #!/bin/sh
 
 #
+#    CFNS - Rijkswaterstaat CIV, Delft © 2021 - 2022 <cfns@rws.nl>
+#
+#    Copyright 2021 - 2022 Bastiaan Teeuwen <bastiaan@mkcl.nl>
+#
+#    This file is part of dabalarm
+#
+#    dabalarm is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    dabalarm is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with dabalarm.  If not, see <https://www.gnu.org/licenses/>.
+
+#
 # Script to play all files in a channel's music/ directory
 # Not to be invoked manually, only by other scripts or programs
 #
