@@ -138,7 +138,7 @@ $ ./bootstrap.sh welle-io
 For instance on the sending side:
 ```
 $ odr-dabmux dabmux.cfg | odr-dabmod -f /dev/stdout -m 1 -F u8 | ncat -l -k
---no-shutdown 0.0.0.0:1234
+--no-shutdown 0.0.0.0 1234
 ```
 
 And on the receiving side:
@@ -146,7 +146,7 @@ And on the receiving side:
 TODO
 ```
 
-TODO sending odr-dabmux ETI frames over network
+TODO sending odr-dabmux EDI frames over network
 
 # Stream multiplexing
 `./streamctl.sh` is used to bind a stream to a sub-channel. A stream provides a

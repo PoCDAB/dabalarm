@@ -78,7 +78,7 @@ if [ ! -p "/tmp/dabch$CH-audio.fifo" ]; then
 		--format=raw \
 		--fifo-silence \
 		--bitrate=128 \
-		--output=tcp://localhost:9001 \
+		--output=tcp://localhost:900$CH \
 		--pad-socket=dabch$CH \
 		--pad=58 & echo $! > "$AUDIOENC_PID"
 
